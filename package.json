@@ -25,5 +25,9 @@
   "devDependencies": {
     "typescript": "^2.3.2",
     "typings": "^2.1.1"
+  },
+  "dependencies": {
+    "@types/commander": "^2.9.0",
+    "commander": "^2.9.0"
   }
 }
