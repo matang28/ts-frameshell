@@ -1,0 +1,25 @@
+{
+  "name": "ts-frameshell",
+  "version": "1.0.0",
+  "description": "A Cool CLI framework",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matang28/ts-frameshell.git"
+  },
+  "keywords": [
+    "shell",
+    "cli",
+    "commander",
+    "bash"
+  ],
+  "author": "Matan Golan <matang28@gmail.com> (https://github.com/matang28)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/matang28/ts-frameshell/issues"
+  },
+  "homepage": "https://github.com/matang28/ts-frameshell#readme"
+}
