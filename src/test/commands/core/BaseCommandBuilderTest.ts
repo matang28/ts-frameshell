@@ -1,7 +1,7 @@
 import {suite,test} from "mocha-typescript"
 import {assert} from "chai"
-import {BaseCommandBuilder} from "../../main/core/BaseCommandBuilder";
-import {ICommandParams} from "../../main/definitions/ICommandParams";
+import {BaseCommandBuilder} from "../../../main/commands/core/BaseCommandBuilder";
+import {ICommandParams} from "../../../main/commands/definitions/ICommandParams";
 
 /**
  * Just a mock builder

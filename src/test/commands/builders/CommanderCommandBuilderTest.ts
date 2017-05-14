@@ -1,12 +1,12 @@
 import {suite} from "mocha-typescript";
 import {test} from "mocha-typescript";
 import {assert} from "chai";
-import {ICommandArgument} from "../../main/definitions/ICommandArgument";
-import {CommanderCommandBuilder} from "../../main/builders/CommanderCommandBuilder";
-import {ICommandOption} from "../../main/definitions/ICommandOption";
-import {ICommandParams} from "../../main/definitions/ICommandParams";
-import {ICommandItem} from "../../main/core/ICommandItem";
-import {ICommandRequest} from "../../main/definitions/ICommandRequest";
+import {ICommandArgument} from "../../../main/commands/definitions/ICommandArgument";
+import {CommanderCommandBuilder} from "../../../main/commands/builders/CommanderCommandBuilder";
+import {ICommandOption} from "../../../main/commands/definitions/ICommandOption";
+import {ICommandParams} from "../../../main/commands/definitions/ICommandParams";
+import {ICommandItem} from "../../../main/commands/core/ICommandItem";
+import {ICommandRequest} from "../../../main/commands/definitions/ICommandRequest";
 
 @suite("Commander plugin - parseSingleArgument() tests")
 class CommanderBuilderParseSingleArgumentTest {
