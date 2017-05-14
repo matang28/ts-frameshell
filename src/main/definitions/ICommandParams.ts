@@ -14,7 +14,7 @@ export interface ICommandParams{
     /**
      * The description of the command.
      */
-    description: string;
+    description?: string;
 
     /**
      * An array of the command's arguments.

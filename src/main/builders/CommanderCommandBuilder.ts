@@ -20,17 +20,17 @@ export class CommanderCommandBuilder extends BaseCommandBuilder {
 
             //Parse the command:
             let command = commander.command(
-                    `${cmd.params.name} ${CommanderCommandBuilder.toArgumentsString(cmd.params.arguments)}`, //Command string
-                    cmd.params.description //Command description
-                );
+                CommanderCommandBuilder.toCommandString(cmd.params), //Command string
+                cmd.params.description //Command description
+            );
 
             //Parse the command options:
-            cmd.params.options.forEach(opt=>{
+            cmd.params.options.forEach(opt => {
                 command = command.option(CommanderCommandBuilder.toOptionString(opt), opt.description);
             });
 
             //Assign the callback:
-            command = command.action((result: any[])=>{
+            command = command.action((...result: any[]) => {
                 cmd.action(CommanderCommandBuilder.parseCommandRequest(cmd.params, result));
             });
         });
@@ -38,6 +38,25 @@ export class CommanderCommandBuilder extends BaseCommandBuilder {
         //Finally let it parse the argv:
         commander.parse(argv);
     }
+
+    /**
+     * Converts the {@link ICommandParams} object to commander's like command string.
+     * @param cmdParams
+     * @returns {string}
+     */
+    private static toCommandString(cmdParams: ICommandParams): string {
+
+        let args: string = CommanderCommandBuilder.toArgumentsString(cmdParams.arguments);
+
+        if (args == "") {
+            return cmdParams.name;
+        }
+        else {
+            return [cmdParams.name, args].join(" ");
+        }
+
+    }
+
 
     /**
      * Converts the commander's callback result to {@link ICommandRequest} object.
@@ -50,21 +69,27 @@ export class CommanderCommandBuilder extends BaseCommandBuilder {
         let argumentsMap: Map<string, string> = new Map();
         let optionsMap: Map<string, string | boolean> = new Map();
 
+        //The last item will be the command object:
+        let rawCommand = result.pop();
+
+        //For each one of the params options:
+        cmdParams.options.forEach(opt => {
+            if (rawCommand[opt.long]) {
+                optionsMap.set(opt.long, rawCommand[opt.long]);
+            }
+            else {
+                optionsMap.set(opt.long, false);
+            }
+
+        });
+
+        // The remaining items in the array are the arguments
         let argSize = cmdParams.arguments.length || 0;
         let i: number;
 
-        //First add all arguments (they are in the first indices)
-        for(i=0;i<argSize;i++){
+        for (i = 0; i < argSize; i++) {
             argumentsMap.set(cmdParams.arguments[i].name, result[i]);
         }
-
-        //The last item will be the command object:
-        let rawCommand = result[result.length-1];
-
-        //For each one of the params options:
-        cmdParams.options.forEach(opt=>{
-           optionsMap.set(opt.long, rawCommand[opt.long] || false);
-        });
 
         //Finally return the command request object:
         return {
@@ -78,14 +103,18 @@ export class CommanderCommandBuilder extends BaseCommandBuilder {
      * @param opt the {@link ICommandOption} object
      * @returns {string} Commander like option string
      */
-    private static toOptionString(opt: ICommandOption){
+    private static toOptionString(opt: ICommandOption) {
 
         //Each option is formatted as "-p --port [input]""
 
         let base: string = `-${opt.short} --${opt.long}`;
 
         //If the option is not a flag add the input placeholder:
-        base += opt.flag ? "" : `[input]`;
+        if (null == opt.flag) {
+            opt.flag = true;
+        }
+
+        base += (opt.flag ? "" : ` [input]`);
 
         return base;
     }
@@ -97,13 +126,13 @@ export class CommanderCommandBuilder extends BaseCommandBuilder {
      */
     private static toArgumentsString(args: Array<ICommandArgument>): string {
 
-        let output: string = "";
+        let stringsArray: string[] = [];
         let array: Array<ICommandArgument> = args || [];
 
-        //For each argument create parse the argument string:
-        array.forEach(item => output += CommanderCommandBuilder.parseSingleArgument(item));
-
-        return output;
+        //For each argument create parse the argument string and concat them:
+        return array
+            .map(i => CommanderCommandBuilder.parseSingleArgument(i))
+            .join(" ");
     }
 
     /**
