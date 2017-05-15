@@ -54,5 +54,9 @@ export abstract class BaseCommandBuilder implements ICommandBuilder{
         return this.version;
     }
 
+    setVersion(version: string): void{
+        this.version = version;
+    }
+
     abstract build(argv: string[]);
 }

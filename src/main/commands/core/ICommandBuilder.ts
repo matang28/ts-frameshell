@@ -25,6 +25,11 @@ export interface ICommandBuilder{
     getVersion(): string;
 
     /**
+     * Sets the version
+     */
+    setVersion(version: string): void;
+
+    /**
      * Builds the CLI.
      * @param argv the process argv.
      */

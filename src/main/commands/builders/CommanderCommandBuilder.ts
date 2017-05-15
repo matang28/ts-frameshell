@@ -21,8 +21,9 @@ export class CommanderCommandBuilder extends BaseCommandBuilder {
             //Parse the command:
             let command = commander.command(
                 CommanderCommandBuilder.toCommandString(cmd.params), //Command string
-                cmd.params.description //Command description
             );
+
+            command.description(cmd.params.description);
 
             //Parse the command options:
             cmd.params.options.forEach(opt => {
@@ -68,6 +69,11 @@ export class CommanderCommandBuilder extends BaseCommandBuilder {
 
         let argumentsMap: Map<string, string> = new Map();
         let optionsMap: Map<string, string | boolean> = new Map();
+
+        //Check if the result contains the command name as the first element:
+        if(result[0]==cmdParams.name){
+            result.shift();
+        }
 
         //The last item will be the command object:
         let rawCommand = result.pop();
