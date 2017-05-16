@@ -32,6 +32,7 @@
   },
   "dependencies": {
     "@types/commander": "^2.9.0",
-    "commander": "^2.9.0"
+    "commander": "^2.9.0",
+    "reflect-metadata": "^0.1.10"
   }
 }
