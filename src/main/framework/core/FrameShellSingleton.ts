@@ -23,7 +23,7 @@ export class FrameShellSingleton {
      * Gets the singleton instance of the command builder.
      * @returns {ICommandBuilder}
      */
-    public static getCommandBuilder(): ICommandBuilder{
+    private static getCommandBuilder(): ICommandBuilder{
 
         if(null==this.commandBuilder){
             this.commandBuilder = FrameShellSingleton.provideCommandBuilder("0");

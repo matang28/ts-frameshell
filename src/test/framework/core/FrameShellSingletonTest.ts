@@ -9,9 +9,9 @@ class FrameShellSingletonTest{
     @test("Should get the same instance every time") testSingleton1(){
 
         //Arrange:
-        let singleton1: ICommandBuilder = FrameShellSingleton.getCommandBuilder();
-        let singleton2: ICommandBuilder = FrameShellSingleton.getCommandBuilder();
-        let singleton3: ICommandBuilder = FrameShellSingleton.getCommandBuilder();
+        let singleton1: ICommandBuilder = FrameShellSingleton["getCommandBuilder"]();
+        let singleton2: ICommandBuilder = FrameShellSingleton["getCommandBuilder"]();
+        let singleton3: ICommandBuilder = FrameShellSingleton["getCommandBuilder"]();
 
         //Assert:
         assert.isDefined(singleton1);
