@@ -1,10 +1,10 @@
 import {test, suite} from "mocha-typescript";
 import {assert} from "chai"
-import {FrameShellSingleton} from "../../../../main/framework/core/FrameShellSingleton";
+import {FrameShellSingleton} from "../../../main/framework/core/FrameShellSingleton";
 import {BaseTestController} from "./BaseTestController";
 import {ICommandDelegate} from "./ICommandDelegate";
 import {TestController1} from "./TestController1";
-import {ICommandRequest} from "../../../../main/commands/definitions/ICommandRequest";
+import {ICommandRequest} from "../../../main/commands/definitions/ICommandRequest";
 import {TestController2} from "./TestController2";
 
 @suite("FrameShell integration tests - Single controller setup")

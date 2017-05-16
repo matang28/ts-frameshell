@@ -1,6 +1,6 @@
-import {ICommandRequest} from "../../../../main/commands/definitions/ICommandRequest";
-import {CommandEndpoint} from "../../../../main/framework/decorators/CommandEndpoint";
-import {arg, option} from "../../../../main/framework/decorators/CommandGrammer";
+import {ICommandRequest} from "../../../main/commands/definitions/ICommandRequest";
+import {CommandEndpoint} from "../../../main/framework/decorators/CommandEndpoint";
+import {arg, option} from "../../../main/framework/decorators/CommandGrammer";
 import {BaseTestController} from "./BaseTestController";
 
 export class TestController2 extends BaseTestController{
