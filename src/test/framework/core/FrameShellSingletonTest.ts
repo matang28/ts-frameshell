@@ -1,7 +1,7 @@
 import {suite,test} from "mocha-typescript"
 import {assert} from "chai"
-import {FrameShellSingleton} from "../../../../main/framework/core/FrameShellSingleton";
-import {ICommandBuilder} from "../../../../main/commands/core/ICommandBuilder";
+import {FrameShellSingleton} from "../../../main/framework/core/FrameShellSingleton";
+import {ICommandBuilder} from "../../../main/commands/core/ICommandBuilder";
 
 @suite("FrameShell Singleton tests")
 class FrameShellSingletonTest{
